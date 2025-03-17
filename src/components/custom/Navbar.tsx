@@ -18,7 +18,7 @@ const navData: { pathHref: string; title: string }[] = [
     title: "About",
   },
   {
-    pathHref: "#products",
+    pathHref: "/products",
     title: "Products",
   },
   {
