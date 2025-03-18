@@ -1,29 +1,23 @@
 import {
   AlignJustify,
-  CreditCard,
   Home,
-  Keyboard,
   LogOut,
   Phone,
-  Settings,
   ShoppingCart,
   User,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "react-router-dom";
 
-const navData: { icon: any; pathHref: string; title: string }[] = [
+const navData = [
   {
     icon: <Home />,
     pathHref: "/",
@@ -36,7 +30,7 @@ const navData: { icon: any; pathHref: string; title: string }[] = [
   },
   {
     icon: <ShoppingCart />,
-    pathHref: "#products",
+    pathHref: "/products",
     title: "Products",
   },
   {
@@ -59,16 +53,18 @@ export function DropdownMenuDemo() {
           {navData.map((item, index) => (
             <DropdownMenuItem key={index}>
               {item.icon}
-              {item.pathHref.slice(0, 1) === "#" ? (
-                <a href={item.pathHref}>{item.title}</a>
+              {item.pathHref.startsWith("#") ? (
+                <a href={item.pathHref} className="hover:text-[#543017]">
+                  {item.title}
+                </a>
               ) : (
                 <Link
-                  className={
-                    pathname.slice(1) === item.title.toLowerCase
+                  to={item.pathHref}
+                  className={`${
+                    pathname === item.pathHref
                       ? "text-[#543017] font-semibold"
                       : ""
-                  }
-                  to={item.pathHref}
+                  } hover:text-[#543017]`}
                 >
                   {item.title}
                 </Link>

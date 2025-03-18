@@ -31,7 +31,7 @@ const productData = [
 
 export function CarouselPlugin() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
 
   return (
@@ -63,8 +63,8 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="md:ml-0 ml-7" />
+      <CarouselNext className="md:mr-0 mr-7" />
     </Carousel>
   );
 }
