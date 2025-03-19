@@ -9,6 +9,7 @@ type ProductCardProps = {
 
 const ProductCard = ({ id, name, price, imageUrl }: ProductCardProps) => {
   const navigate = useNavigate();
+  //navigasi  ke ..
 
   return (
     <>
