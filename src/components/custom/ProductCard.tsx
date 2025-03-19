@@ -13,7 +13,7 @@ const ProductCard = ({ id, name, price, imageUrl }: ProductCardProps) => {
   return (
     <>
       <div
-        onClick={() => navigate(`/detail/product/${id}`)}
+        onClick={() => navigate(`/product/${id}`)}
         className="product-card rounded-lg w-[250px] h-[350px] bg-neutral-300 flex-shrink-0"
       >
         <div className="product-image w-full h-[250px]">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import { DropdownMenuDemo } from "./DropdownMenu";
+import useNavbar from "@/hooks/useNavbar";
 
 type NavType = {
   pathHref: string;
@@ -28,9 +29,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between z-10 md:px-36 md:py-6 px-8 py-4 w-full gap-8 fixed items-center transition-all duration-300 ${
+      className={` flex justify-between z-10 md:px-36 md:py-6 px-8 py-4 w-full gap-8 fixed items-center transition-all duration-300 ${
         scroll ? "bg-white shadow-md" : "bg-transparent"
-      }`}
+      }
+`}
     >
       <div className="flex items-center gap-0 md:gap-8">
         <div className="nav-logo w-9 h-9  rounded-md">

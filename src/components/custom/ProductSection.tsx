@@ -1,43 +1,44 @@
 import { axiosInstance } from "@/lib/axios";
 import ProductCard from "./ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-// type ProductType = {
-//   _id?: number;
-//   name: string;
-//   price: number;
-// };
+type ProductType = {
+  _id?: number;
+  name: string;
+  price: number;
+  thumbnail: string;
+  cloudinary_id: string;
+};
 
 const ProductSection = () => {
-  // const [productData, setProductData] = useState([]);
+  // const [productData, setProductData] = useState([])
 
-  const getProducts: any = async () => {
+  const getProducts = async () => {
     const response = await axiosInstance("/api/products");
     return response.data;
+    // setProductData()
   };
 
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
+  //   useEffect(() => {
+  // getProducts()
+  //   }, [])
 
-  const { data: productData } = useQuery({
+  const { data: productData = [] } = useQuery({
     queryFn: getProducts,
     queryKey: ["products"],
   });
-
-  console.log(productData);
 
   return (
     <>
       <div className="flex w-full">
         <div className="product-scrollX flex w-full gap-x-4 overflow-x-auto">
-          {productData.map((product: any, index: any) => (
+          {productData?.map((product: ProductType, index: number) => (
             <ProductCard
-              id={product.id}
+              id={product._id}
               name={product.name}
               price={product.price}
-              imageUrl=""
+              imageUrl={product.thumbnail}
               key={index}
             />
           ))}
