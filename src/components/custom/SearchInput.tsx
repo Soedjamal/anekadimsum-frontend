@@ -1,7 +1,16 @@
+import { useRef } from "react";
 import { Input } from "../ui/input";
 import { Search } from "lucide-react";
 
 const SearchInput = () => {
+  const inputRef = useRef<HTMLInputElement>();
+
+  const handleFocus = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <>
       <div
@@ -10,10 +19,11 @@ const SearchInput = () => {
         }
       >
         <Input
+          ref={inputRef}
           placeholder="Cari"
           className="border-none outline-none bg-transparent w-full p-0"
         />
-        <Search />
+        <Search onClick={handleFocus} />
       </div>
     </>
   );
