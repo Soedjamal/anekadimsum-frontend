@@ -11,17 +11,17 @@ function App() {
   console.log(pathname);
   const hideNavbar = ["/product/"];
 
-  const isHideNav = hideNavbar.some((route) => pathname.startsWith(route));
+  const isHide = hideNavbar.some((route) => pathname.startsWith(route));
 
   return (
     <>
-      {!isHideNav && <Navbar />}
+      {!isHide && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<DetailProduct />} />
       </Routes>
-      {/* <Footer /> */}
+      {!isHide && <Footer />}
     </>
   );
 }

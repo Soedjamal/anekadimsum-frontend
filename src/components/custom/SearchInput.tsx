@@ -6,12 +6,12 @@ const SearchInput = () => {
     <>
       <div
         className={
-          "search-input flex w-full items-center gap-4 rounded-md px-4 border-2  border-neutral-500"
+          "search-input flex w-full items-center gap-4 rounded-md px-2 border-[1px]  border-neutral-500"
         }
       >
         <Input
-          placeholder="Search"
-          className="border-none outline-none bg-transparent"
+          placeholder="Cari"
+          className="border-none outline-none bg-transparent w-full p-0"
         />
         <Search />
       </div>
