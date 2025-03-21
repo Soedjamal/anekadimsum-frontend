@@ -31,8 +31,8 @@ const ProductSection = () => {
 
   return (
     <>
-      <div className="flex w-full">
-        <div className="product-scrollX flex w-full gap-x-4 overflow-x-auto">
+      <div className="flex w-full h-auto">
+        <div className="product-scrollX h-[350px] flex w-full gap-x-4 overflow-x-auto">
           {productData?.map((product: ProductType, index: number) => (
             <ProductCard
               id={product._id}
