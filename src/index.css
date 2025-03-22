@@ -72,3 +72,9 @@
 body::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 600px) {
+  div::-webkit-scrollbar {
+    display: none;
+  }
+}

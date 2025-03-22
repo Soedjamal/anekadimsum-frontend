@@ -25,7 +25,7 @@ const navData = [
   },
   {
     icon: <User />,
-    pathHref: "#",
+    pathHref: "#about",
     title: "About",
   },
   {
@@ -35,7 +35,7 @@ const navData = [
   },
   {
     icon: <Phone />,
-    pathHref: "#",
+    pathHref: "#contact",
     title: "Contact",
   },
 ];

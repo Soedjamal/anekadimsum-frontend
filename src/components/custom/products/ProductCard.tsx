@@ -1,4 +1,4 @@
-import { Dot, ShoppingBag, ShoppingBasket } from "lucide-react";
+import { generateSlug } from "@/utils/generateSlug";
 import { useNavigate } from "react-router-dom";
 
 type ProductCardProps = {
@@ -8,6 +8,7 @@ type ProductCardProps = {
   sold?: number;
   imageUrl: string;
   stock?: number;
+  orderBy?: string;
 };
 
 const ProductCard = ({
@@ -15,22 +16,28 @@ const ProductCard = ({
   name,
   price,
   imageUrl,
-  sold = 0,
-  stock = 0,
+  sold = 600,
 }: ProductCardProps) => {
   const navigate = useNavigate();
 
-  console.log(name.slice(1, 15));
-
-  //navigasi  ke ..
+  const soldFormat = (soldVal: number) => {
+    if (soldVal >= 100) {
+      return "100+";
+    } else if (soldVal >= 500) {
+      return "500+";
+    } else if (soldVal >= 1000) {
+      return "1000+";
+    }
+    return soldVal;
+  };
 
   return (
     <>
       <div
-        onClick={() => navigate(`/product/${id}`)}
+        onClick={() => navigate(`/product/${generateSlug(name)}/${id}`)}
         className="product-card rounded-lg w-[220px] h-[320px] flex-shrink-0 relative"
       >
-        <div className="product-image w-full h-[220px] rounded-t-lg">
+        <div className="product-image w-full h-[220px] shadow-sm ">
           <img
             src={imageUrl}
             alt=""
@@ -48,14 +55,14 @@ const ProductCard = ({
               maximumFractionDigits: 0,
             }).format(price)}
           </h4>
-          <div className="flex items-center absolute bottom-0 justify-between w-full text-primary-foreground ">
+          <div className="flex items-center gap-2 w-full text-neutral-500 ">
             <div className="flex items-center gap-2">
-              <ShoppingBag className="w-[1rem]" />
-              <h4 className="stext-sm">{sold} Terjual</h4>
+              <h4 className="text-sm">{soldFormat(sold)} Terjual</h4>
             </div>
-            <div className="flex items-center">
-              <h4 className="stext-sm">Stok : {stock}</h4>
-            </div>
+            {/* <h1>|</h1> */}
+            {/* <div className="flex items-center"> */}
+            {/*   <h4 className="text-sm">Stok : {stock}</h4> */}
+            {/* </div> */}
           </div>
           {/* <h4 className="px-2 text-sm bg-card-foreground w-fit rounded-full text-background"> */}
           {/*   varian: ayam */}

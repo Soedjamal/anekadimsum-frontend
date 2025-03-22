@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import SearchInput from "./SearchInput";
-import { DropdownMenuDemo } from "./DropdownMenu";
-import useNavbar from "@/hooks/useNavbar";
+import SearchInput from "../content/SearchInput";
+import { DropdownMenuDemo } from "../content/DropdownMenu";
 
 type NavType = {
   pathHref: string;
@@ -11,9 +10,9 @@ type NavType = {
 
 const navData: NavType[] = [
   { pathHref: "/", title: "Home" },
-  { pathHref: "#", title: "About" },
+  { pathHref: "#about", title: "About" },
   { pathHref: "/products", title: "Products" },
-  { pathHref: "#", title: "Contact" },
+  { pathHref: "#contact", title: "Contact" },
 ];
 
 const Navbar = () => {
