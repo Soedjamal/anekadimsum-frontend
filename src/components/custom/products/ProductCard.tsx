@@ -14,16 +14,16 @@ type ProductCardProps = {
 const ProductCard = ({ id, name, price, imageUrl, sold }: ProductCardProps) => {
   const navigate = useNavigate();
 
-  const soldFormat = (soldVal: number) => {
-    if (soldVal >= 100) {
-      return "100+";
-    } else if (soldVal >= 500) {
-      return "500+";
-    } else if (soldVal >= 1000) {
-      return "1000+";
-    }
-    return soldVal;
-  };
+  // const soldFormat = (soldVal: number) => {
+  //   if (soldVal >= 100) {
+  //     return "100+";
+  //   } else if (soldVal >= 500) {
+  //     return "500+";
+  //   } else if (soldVal >= 1000) {
+  //     return "1000+";
+  //   }
+  //   return soldVal;
+  // };
 
   return (
     <>

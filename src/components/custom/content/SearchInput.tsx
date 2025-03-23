@@ -16,6 +16,7 @@ const SearchInput = () => {
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    console.log(searchParams);
     e.preventDefault();
     if (input.trim()) {
       setSearchParams({ search: input });
