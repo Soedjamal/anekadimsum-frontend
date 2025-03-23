@@ -15,6 +15,25 @@ const Products = () => {
           <div className="md:w-full w-[350px] mt-10">
             <div className="flex items-center w-full justify-between">
               <h1 className="text-2xl font-semibold w-1/2 text-[#543017]">
+                Semua Produk
+              </h1>
+              <div
+                className="flex items-center gap-2 w-fit justify-end"
+                onClick={() => navigate(`/products/semua-produk`)}
+              >
+                <h4 className="text-sm tracking-tight">Lihat semua</h4>{" "}
+                <ChevronRight />
+              </div>
+            </div>
+
+            <div className="carousel mt-6">
+              <ProductSection scrollDirection="x" />
+            </div>
+          </div>
+
+          <div className="md:w-full w-[350px] mt-10">
+            <div className="flex items-center w-full justify-between">
+              <h1 className="text-2xl font-semibold w-1/2 text-[#543017]">
                 Paket Hemat
               </h1>
               <div
@@ -27,7 +46,7 @@ const Products = () => {
             </div>
 
             <div className="carousel mt-6">
-              <ProductSection scrollDirection="x" />
+              <ProductSection scrollDirection="x" filter="byPrice" />
             </div>
           </div>
 
@@ -45,7 +64,7 @@ const Products = () => {
               </div>
             </div>
             <div className="carousel mt-6">
-              <ProductSection scrollDirection="x" />
+              <ProductSection scrollDirection="x" filter="bySold" />
             </div>
           </div>
         </section>

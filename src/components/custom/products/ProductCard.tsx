@@ -11,13 +11,7 @@ type ProductCardProps = {
   orderBy?: string;
 };
 
-const ProductCard = ({
-  id,
-  name,
-  price,
-  imageUrl,
-  sold = 600,
-}: ProductCardProps) => {
+const ProductCard = ({ id, name, price, imageUrl, sold }: ProductCardProps) => {
   const navigate = useNavigate();
 
   const soldFormat = (soldVal: number) => {
@@ -57,7 +51,7 @@ const ProductCard = ({
           </h4>
           <div className="flex items-center gap-2 w-full text-neutral-500 ">
             <div className="flex items-center gap-2">
-              <h4 className="text-sm">{soldFormat(sold)} Terjual</h4>
+              <h4 className="text-sm">{sold ? sold : 0} Terjual</h4>
             </div>
             {/* <h1>|</h1> */}
             {/* <div className="flex items-center"> */}

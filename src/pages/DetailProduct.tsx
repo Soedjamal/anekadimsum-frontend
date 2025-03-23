@@ -57,7 +57,11 @@ const DetailProduct = () => {
             <h1 className="font-normal text-xl mt-2">{productData.name}</h1>
             <div className="action w-full md:flex justify-center hidden">
               <div className="py-5 w-full">
-                <Button color="#" className="w-full">
+                <Button
+                  color="#"
+                  className="w-full"
+                  onClick={() => setCheckoutMenu((prev) => !prev)}
+                >
                   Beli Sekarang
                   <ShoppingCart />
                 </Button>
@@ -85,15 +89,26 @@ const DetailProduct = () => {
           <>
             <div className="w-full h-screen bg-neutral-700 opacity-55 fixed top-0"></div>
             <div
-              className="fixed bottom-[-20%] rounded-t-lg w-full h-screen transition-all
+              className="fixed bottom-[-20%] md:bottom-[20%] md:flex md:justify-center
+             rounded-t-lg w-full h-screen md:h-3/4 md:bg-transparent transition-all
               duration-300 ease-out"
             >
-              <CheckoutProduct menu={() => setCheckoutMenu((prev) => !prev)} />
+              <CheckoutProduct
+                stock={productData.stock}
+                product_id={productData._id}
+                price={productData.price}
+                menu={() => setCheckoutMenu((prev) => !prev)}
+              />
             </div>
           </>
         ) : (
           <div className="fixed bottom-[-100%] w-full transition-all duration-300 ease-linear">
-            <CheckoutProduct />
+            <CheckoutProduct
+              stock={productData.stock}
+              product_id={productData._id}
+              price={productData.price}
+              menu={() => setCheckoutMenu((prev) => !prev)}
+            />
           </div>
         )}
       </div>
