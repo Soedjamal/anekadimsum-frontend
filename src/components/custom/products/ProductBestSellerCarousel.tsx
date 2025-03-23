@@ -1,7 +1,7 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -50,7 +50,7 @@ export function BestSellerProductsCarousel() {
               <Card className="w-full md:max-w-[400px] h-[400px]">
                 <img
                   src={product.thumbnail}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                   alt=""
                 />
               </Card>

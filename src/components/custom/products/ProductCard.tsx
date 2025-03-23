@@ -37,14 +37,14 @@ const ProductCard = ({
         onClick={() => navigate(`/product/${generateSlug(name)}/${id}`)}
         className="product-card rounded-lg w-[220px] h-[320px] flex-shrink-0 relative"
       >
-        <div className="product-image w-full h-[220px] shadow-sm ">
+        <div className="product-image w-full h-[220px] border-[1px] rounded-lg ">
           <img
             src={imageUrl}
             alt=""
             className="bg-card-foreground w-full h-full object-cover rounded-lg"
           />
         </div>
-        <div className="product-info rounded-b-lg py-2 w-full h-[100px] bg-background border-none">
+        <div className="product-info rounded-b-lg py-2 w-full h-[100px] bg-neutral-50 border-none">
           <h4 className="text-lg font-normal text-neutral-800">
             {name.length >= 16 ? name.slice(0, 15) + "..." : name}
           </h4>

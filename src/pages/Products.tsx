@@ -10,7 +10,7 @@ const Products = () => {
         <section
           id="products"
           className="flex flex-col w-full md:justify-start md:px-36 justify-center
-          items-center md:pt-20 py-20 min-h-screen"
+          items-center md:pt-20 py-20 min-h-screen bg-neutral-50"
         >
           <div className="md:w-full w-[350px] mt-10">
             <div className="flex items-center w-full justify-between">

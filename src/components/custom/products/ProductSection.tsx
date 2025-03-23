@@ -30,7 +30,7 @@ const ProductSection = ({ scrollDirection }: ProductSectionProps) => {
     <>
       <div className="flex w-full h-auto">
         <div
-          className={`${scrollDirection == "x" ? "overflow-x-auto h-[350px]" : "flex-wrap"} product-scrollX  flex w-full gap-x-4`}
+          className={`${scrollDirection == "x" ? "overflow-x-auto h-[350px]" : "flex-wrap gap-4"} product-scrollX  flex w-full gap-x-4`}
         >
           {productData?.map((product: ProductType, index: number) => (
             <ProductCard

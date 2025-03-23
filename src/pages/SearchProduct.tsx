@@ -28,7 +28,7 @@ const SearchProduct = () => {
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-neutral-50">
         {query.length > 0 ? (
           filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -38,7 +38,8 @@ const SearchProduct = () => {
               >
                 <div className="flex justify-start w-[350px]">
                   <div
-                    className="mt-20 mb-8 rounded-lg relative left-0 flex items-center gap-2 w-fit px-6 py-2 bg-primary"
+                    className="mt-20 mb-8 rounded-lg relative
+                    left-0 flex items-center gap-2 w-fit  py-2 bg-neutral-50"
                     onClick={() => navigate("/products")}
                   >
                     <ArrowLeft size={"2rem"} />

@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Public sans", "Poppins", "Barlow", "Helvetica"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -55,4 +58,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 };
-
