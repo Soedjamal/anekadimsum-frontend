@@ -94,6 +94,8 @@ const DetailProduct = () => {
               duration-300 ease-out"
             >
               <CheckoutProduct
+                name={productData.name}
+                thumbnail={productData.thumbnail}
                 stock={productData.stock}
                 product_id={productData._id}
                 price={productData.price}
@@ -104,6 +106,8 @@ const DetailProduct = () => {
         ) : (
           <div className="fixed bottom-[-100%] w-full transition-all duration-300 ease-linear">
             <CheckoutProduct
+              name={productData.name}
+              thumbnail={productData.thumbnail}
               stock={productData.stock}
               product_id={productData._id}
               price={productData.price}

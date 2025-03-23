@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/custom/auth/ProtectedRoute";
 import Login from "./pages/Login";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
 import ScrollToTop from "./components/custom/utils/ScrollToTop";
+import SuccessPayment from "./pages/SuccessPayment";
 
 function App() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ function App() {
             <Route path="/product/:slug/:id" element={<DetailProduct />} />
             <Route path="/products/:slug" element={<DetailProductsByType />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/payment-success" element={<SuccessPayment />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
