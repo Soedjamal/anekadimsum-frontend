@@ -2,11 +2,50 @@ import { BestSellerProductsCarousel } from "@/components/custom/products/Product
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { DollarSign, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const serviceID = import.meta.env.VITE_SERVICE_ID;
+    const templateID = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKEY = import.meta.env.VITE_PUBLIC_KEY;
+
+    try {
+      const response = await emailjs.send(
+        serviceID,
+        templateID,
+        formData,
+        publicKEY,
+      );
+      console.log("success", response.status, response.text);
+
+      setStatus("Message send successfully");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("failed", error);
+      setStatus("Failed to send message, Please try again later");
+    }
+  };
 
   return (
     <>
@@ -115,20 +154,12 @@ const Home = () => {
                   flex flex-col justify-center items-center
                   w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
                 >
-                  <DollarSign />
-                  <h1 className="text-xl font-bold">Harga Bersahabat</h1>
-                  <p className="text-center mt-2">
-                    Kelezatan premium dengan harga yang tetap terjangkau
-                  </p>
-                </div>
-
-                <div
-                  className="icon bg-primary
-                  flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
-                >
                   <div className="logo">
-                    <img src="/images/logo-card-about-nd.jpg" alt="" />
+                    <img
+                      className="w-24"
+                      src="/images/hand-money-income-dollar-icon.png"
+                      alt=""
+                    />
                   </div>
                   <h1 className="text-xl font-bold">Harga Bersahabat</h1>
                   <p className="text-center mt-2">
@@ -141,10 +172,34 @@ const Home = () => {
                   flex flex-col justify-center items-center
                   w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
                 >
-                  <DollarSign />
-                  <h1 className="text-xl font-bold">Harga Bersahabat</h1>
+                  <div className="logo">
+                    <img
+                      className="w-24"
+                      src="/images/fruit-basket-icon.png"
+                      alt=""
+                    />
+                  </div>
+                  <h1 className="text-xl font-bold">Fresh Setiap Hari</h1>
                   <p className="text-center mt-2">
-                    Kelezatan premium dengan harga yang tetap terjangkau
+                    Dibuat dengan bahan pilihan
+                  </p>
+                </div>
+
+                <div
+                  className="icon bg-primary
+                  flex flex-col justify-center items-center
+                  w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
+                >
+                  <div className="logo">
+                    <img
+                      className="w-24"
+                      src="/images/family-icon.png"
+                      alt=""
+                    />
+                  </div>
+                  <h1 className="text-xl font-bold">Pelayanan Ramah</h1>
+                  <p className="text-center mt-2">
+                    Kepuasan & Kenyamanan pelanggan adalah prioritas kami
                   </p>
                 </div>
               </div>
@@ -172,33 +227,56 @@ const Home = () => {
                 </p>
               </div>
 
-              <form className="flex flex-col mt-8 gap-4">
+              <form
+                className="flex flex-col mt-8 gap-4"
+                onSubmit={handleSubmit}
+              >
                 <label>
                   Nama Pengirim:
                   <Input
+                    name="name"
+                    value={formData.name}
                     className="mt-3"
                     type="text"
-                    placeholder="masukkan nama"
+                    placeholder="Masukkan nama mu"
+                    onChange={handleChange}
                   />
                 </label>
                 <label>
                   Email Pengirim
                   <Input
+                    name="email"
+                    value={formData.email}
                     className="mt-3"
-                    type="text"
-                    placeholder="masukkan email"
+                    type="email"
+                    placeholder="Masukkan email mu"
+                    onChange={handleChange}
                   />
                 </label>
                 <label>
                   Pesan:
                   <Textarea
-                    placeholder="tulis pesan"
-                    name=""
-                    id=""
+                    value={formData.message}
+                    placeholder="Tulis pesan mu"
+                    name="message"
                     className="min-h-[100px] max-h-[250px] w-full mt-3"
+                    onChange={handleChange}
                   ></Textarea>
                 </label>
-                <Button className="w-full mt-4">Kirim</Button>
+                <Button className="w-full mt-4" type="submit">
+                  Kirim
+                </Button>
+                {status && (
+                  <p
+                    className={`text-center mt-4 text-sm ${
+                      status.includes("successfully")
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {status}
+                  </p>
+                )}
               </form>
             </div>
           </div>
