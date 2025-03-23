@@ -55,6 +55,7 @@ const DetailProduct = () => {
               }).format(productData.price)}
             </h1>
             <h1 className="font-normal text-xl mt-2">{productData.name}</h1>
+            <h1 className="font-normal  mt-2">Stok : {productData.stock}</h1>
             <div className="action w-full md:flex justify-center hidden">
               <div className="py-5 w-full">
                 <Button
