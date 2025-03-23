@@ -16,7 +16,7 @@ function App() {
   const { pathname } = useLocation();
 
   console.log(pathname);
-  const hideNavbar = ["/product/", "/dashboard"];
+  const hideNavbar = ["/product/", "/dashboard", "/payment-success"];
 
   const isHide = hideNavbar.some((route) => pathname.startsWith(route));
 
