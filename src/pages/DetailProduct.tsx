@@ -54,8 +54,17 @@ const DetailProduct = () => {
                 maximumFractionDigits: 0,
               }).format(productData.price)}
             </h1>
-            <h1 className="font-normal text-xl mt-2">{productData.name}</h1>
-            <h1 className="font-normal  mt-2">Stok : {productData.stock}</h1>
+            <h1 className="font-normal text-xl mt-1">{productData.name}</h1>
+            <div className="flex items-center gap-4 mt-4">
+              <h1 className="font-normal text-sm">
+                Stok : {productData.stock}
+              </h1>
+              <h1>.</h1>
+              <h1 className="font-normal text-sm">
+                Terjual : {productData.sold}
+              </h1>
+            </div>
+
             <div className="action w-full md:flex justify-center hidden">
               <div className="py-5 w-full">
                 <Button
