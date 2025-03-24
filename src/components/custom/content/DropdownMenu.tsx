@@ -1,18 +1,10 @@
-import {
-  AlignJustify,
-  Home,
-  LogOut,
-  Phone,
-  ShoppingCart,
-  User,
-} from "lucide-react";
+import { AlignJustify, Home, Phone, ShoppingCart, User } from "lucide-react";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "react-router-dom";
@@ -72,12 +64,12 @@ export function DropdownMenuDemo() {
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem>
-          <LogOut />
-          <span>Log out</span>
-        </DropdownMenuItem>
+        {/* <DropdownMenuSeparator /> */}
+        {/**/}
+        {/* <DropdownMenuItem> */}
+        {/*   <LogOut /> */}
+        {/*   <span>Log out</span> */}
+        {/* </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

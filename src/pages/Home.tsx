@@ -147,12 +147,13 @@ const Home = () => {
 
               <div
                 className="card-info mt-6 flex flex-col 
-                md:flex-row gap-8  md:w-full items-center md:justify-between"
+                md:flex-row gap-8  md:w-full items-center md:justify-center"
               >
                 <div
                   className="icon bg-primary
                   flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
+                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px]
+                  border-2 rounded-lg p-4"
                 >
                   <div className="logo">
                     <img
@@ -170,7 +171,7 @@ const Home = () => {
                 <div
                   className="icon bg-primary
                   flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
+                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
                 >
                   <div className="logo">
                     <img
@@ -188,7 +189,7 @@ const Home = () => {
                 <div
                   className="icon bg-primary
                   flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:w-[200px] md:h-[200px] border-2 rounded-lg p-4"
+                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
                 >
                   <div className="logo">
                     <img

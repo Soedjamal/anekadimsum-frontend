@@ -99,8 +99,8 @@ const DetailProduct = () => {
           <>
             <div className="w-full h-screen bg-neutral-700 opacity-55 fixed top-0"></div>
             <div
-              className="fixed bottom-[-20%] md:bottom-[20%] md:flex md:justify-center
-             rounded-t-lg w-full h-screen md:h-3/4 md:bg-transparent transition-all
+              className="fixed bottom-[-20%] md:bottom-[0] md:flex md:justify-center
+             rounded-t-lg w-full h-screen md:h-full md:bg-transparent transition-all
               duration-300 ease-out"
             >
               <CheckoutProduct

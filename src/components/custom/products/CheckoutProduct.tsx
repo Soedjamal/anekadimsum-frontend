@@ -133,7 +133,7 @@ const CheckoutProduct = ({
 
           <div className="flex gap-2">
             {/* <h4 className="mt-7">Jumlah Produk :</h4> */}
-            <div className="w-1/2 flex gap-2 py-5">
+            <div className="w-1/2 md:max-w-[300px] flex gap-2 py-5">
               <Button
                 color="#"
                 className="w-[50px]"
