@@ -52,9 +52,9 @@ const Home = () => {
       <div className="main-content w-full">
         <section
           className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center 
-          items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          items-center md:items-start md:pt-0 pt-20 gap-8 py-20 min-h-screen"
         >
-          <div className="hero-content flex md:flex-row flex-col items-center h-fit gap-8 md:mt-36">
+          <div className="hero-content flex md:flex-row-reverse flex-col items-center h-fit gap-8 md:mt-36">
             <div className="hero-img w-[350px] md:max-w-[400px] h-[350px] rounded-lg">
               <img src="/images/dimsum-hero.png" alt="" />
             </div>
@@ -147,13 +147,12 @@ const Home = () => {
 
               <div
                 className="card-info mt-6 flex flex-col 
-                md:flex-row gap-8  md:w-full items-center md:justify-center"
+                md:flex-row gap-8  md:w-full items-center md:justify-between"
               >
                 <div
                   className="icon bg-primary
                   flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px]
-                  border-2 rounded-lg p-4"
+                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
                 >
                   <div className="logo">
                     <img

@@ -28,8 +28,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={` flex justify-between z-10 md:px-36 md:py-6 px-8  py-4 w-full gap-8 fixed items-center transition-all duration-300 ${
-        scroll ? "bg-white shadow-md md:px-24 md:py-4" : "bg-transparent"
+      className={` flex justify-between z-10 md:px-36 md:py-6 px-8
+py-4 w-full gap-8 fixed items-center transition-all duration-300 ${
+        scroll
+          ? "bg-background shadow-md md:px-24 md:py-4"
+          : "bg-background border-b-[1px] border-foreground"
       }
 `}
     >
