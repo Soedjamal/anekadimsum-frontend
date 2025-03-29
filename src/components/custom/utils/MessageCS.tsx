@@ -1,4 +1,4 @@
-const MessageCS = ({ productName }) => {
+const MessageCS = ({ productName }: { productName: string }) => {
   const handleWhatsAppClick = () => {
     const phoneNumber = "628886947507";
     const message = encodeURIComponent(
