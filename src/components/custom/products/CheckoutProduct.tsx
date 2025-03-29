@@ -3,13 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import {
-  CheckCircle,
-  ChevronLeft,
-  LoaderCircle,
-  Minus,
-  Plus,
-} from "lucide-react";
+import { CheckCircle, ChevronLeft, Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type MenuProps = {

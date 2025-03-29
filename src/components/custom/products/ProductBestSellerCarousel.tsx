@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";

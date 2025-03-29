@@ -8,9 +8,6 @@ import {
   LoaderCircle,
   MessageSquare,
   ShoppingCart,
-  Star,
-  StarIcon,
-  Stars,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";

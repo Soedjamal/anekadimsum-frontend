@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import {
-  CircleAlert,
-  Eye,
-  EyeClosed,
-  MessageSquareWarning,
-} from "lucide-react";
+import { CircleAlert, Eye, EyeClosed } from "lucide-react";
 
 const Login = () => {
   const [showPass, setShowPass] = useState<boolean>(false);

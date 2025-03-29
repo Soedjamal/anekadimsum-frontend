@@ -1,18 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import ProductCard from "./ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
-type ProductType = {
-  _id?: number;
-  name: string;
-  price: number;
-  stock: number;
-  sold: number;
-  thumbnail: string;
-  cloudinary_id: string;
-};
+import { ProductType } from "@/types/ProductType";
 
 type ProductSectionProps = {
   scrollDirection: "x" | "auto";
@@ -20,7 +9,6 @@ type ProductSectionProps = {
 };
 
 const ProductSection = ({ scrollDirection, filter }: ProductSectionProps) => {
-  const navigate = useNavigate();
   const getProducts = async () => {
     const response = await axiosInstance("/api/products");
     return response.data;

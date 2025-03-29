@@ -2,7 +2,7 @@ import { generateSlug } from "@/utils/generateSlug";
 import { useNavigate } from "react-router-dom";
 
 type ProductCardProps = {
-  id?: number;
+  id?: string;
   name: string;
   price: number;
   sold?: number;
