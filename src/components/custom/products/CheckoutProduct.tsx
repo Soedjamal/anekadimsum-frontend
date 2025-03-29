@@ -3,16 +3,22 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { CheckCircle, ChevronLeft, Minus, Plus } from "lucide-react";
-import { useState } from "react";
+import {
+  CheckCircle,
+  ChevronLeft,
+  LoaderCircle,
+  Minus,
+  Plus,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 type MenuProps = {
-  product_id: string;
+  product_id?: string | number;
   menu?: VoidFunction;
-  name: string;
+  name?: string;
   price: number;
   stock: number;
-  thumbnail: string;
+  thumbnail?: string;
 };
 
 const CheckoutProduct = ({
@@ -23,6 +29,7 @@ const CheckoutProduct = ({
   stock,
   thumbnail,
 }: MenuProps) => {
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const [qty, setQty] = useState(0);
   const [firstName, setFirstName] = useState("");
@@ -35,7 +42,15 @@ const CheckoutProduct = ({
     }).format(price);
   };
 
+  useEffect(() => {
+    const customerName = localStorage.getItem("payment");
+    if (customerName) {
+      setFirstName(customerName);
+    }
+  }, []);
+
   const handlePayment = async () => {
+    setLoading(true);
     try {
       if (stock < 1 || qty > stock) {
         toast({
@@ -45,6 +60,8 @@ const CheckoutProduct = ({
         });
         return;
       }
+
+      localStorage.setItem("payment", firstName);
 
       const response = await axiosInstance.post("api/transactions", {
         first_name: firstName,
@@ -96,17 +113,19 @@ const CheckoutProduct = ({
         description: "Terjadi kesalahan saat memproses pembayaran.",
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
       <div
-        className="min-h-full w-screen flex flex-col px-7
+        className="min-h-full w-screen flex flex-col px-7 md:px-36 lg:relative lg:px-10 lg:w-1/2
         rounded-t-lg
          bg-neutral-50"
       >
-        <div className="absolute top-7 left-7 w-full flex items-center gap-2">
+        <div className="absolute top-7 left-7 md:left-36 lg:left-10 w-full flex items-center gap-2">
           <ChevronLeft onClick={menu} className="" size={"2rem"} />
 
           <h4 className="text-lg font-bold">Checkout</h4>
@@ -162,7 +181,9 @@ const CheckoutProduct = ({
               <Label className="mt-5">
                 Nama Pemesan:
                 <Input
-                  className="mt-3 placeholder:text-primary"
+                  name="name"
+                  value={firstName}
+                  className="mt-3 placeholder:text-primary hover:ring-primary"
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="masukkan nama mu"
                   type="text"
@@ -171,6 +192,7 @@ const CheckoutProduct = ({
             </form>
 
             <Button
+              disabled={loading}
               className="w-full mt-5"
               type="submit"
               onClick={handlePayment}

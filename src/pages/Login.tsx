@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import {
+  CircleAlert,
+  Eye,
+  EyeClosed,
+  MessageSquareWarning,
+} from "lucide-react";
 
 const Login = () => {
+  const [showPass, setShowPass] = useState<boolean>(false);
+  const [errorClient, setErrorClient] = useState<string>("");
   const { mutate, isPending, isError, error } = useAuth();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -10,21 +19,24 @@ const Login = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    if (formData.email.length < 1 || formData.password.length < 1) {
+      return setErrorClient("field wajib di isi");
+    }
+
     e.preventDefault();
     mutate(formData);
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
-          Login
+    <div className="flex min-h-screen items-center pt-28 flex-col bg-neutral-50">
+      <div className="h-[50px] overflow-hidden flex items-center">
+        <img src="/images/anekadimsum-logo.png" alt="" className="w-[100px]" />
+      </div>
+      <div className="w-[90%] md:w-3/4 lg:w-1/3 max-w-md rounded-lg pt-2 p-6">
+        <h2 className="text-2xl font-bold text-center text-gray-700 mb-14">
+          Masuk Sebagai Admin
         </h2>
-        {isError && (
-          <p className="text-red-500 text-sm text-center mb-4">
-            {(error as any)?.response?.data?.message || "Login failed"}
-          </p>
-        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-600 text-sm font-medium">
@@ -37,30 +49,56 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
             <label className="block text-gray-600 text-sm font-medium">
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full pl-2 pr-10 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              {showPass ? (
+                <Eye
+                  size="1.3rem"
+                  className="absolute top-[0.6rem] right-3  text-input"
+                  onClick={() => setShowPass(!showPass)}
+                />
+              ) : (
+                <EyeClosed
+                  size="1.3rem"
+                  className="absolute top-[0.6rem] right-3  text-input"
+                  onClick={() => setShowPass(!showPass)}
+                />
+              )}
+            </div>
           </div>
-          <button
+
+          <p className="text-primary text-sm">Lupa password?</p>
+          <Button
             type="submit"
             disabled={isPending}
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition disabled:bg-gray-400"
+            className="w-full bg-primary text-white py-2 rounded-sm hover:bg-background transition disabled:bg-gray-400"
           >
             {isPending ? "Logging in..." : "Login"}
-          </button>
+          </Button>
+          {isError && (
+            <p className="text-red-500 text-sm flex items-center gap-2 mb-4 p-2 w-full bg-red-50 rounded-sm">
+              <CircleAlert size="1rem" />
+              {errorClient
+                ? errorClient
+                : (error as any)?.response?.data?.message || "Login failed"}
+            </p>
+          )}
         </form>
       </div>
     </div>

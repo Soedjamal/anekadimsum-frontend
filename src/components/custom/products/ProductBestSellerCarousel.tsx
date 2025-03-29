@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/carousel";
 import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { generateSlug } from "@/utils/generateSlug";
 
 type ProductType = {
   _id?: number;
@@ -22,6 +24,8 @@ type ProductType = {
 };
 
 export function BestSellerProductsCarousel() {
+  const navigate = useNavigate();
+
   const getProducts = async () => {
     const response = await axiosInstance("/api/products");
     return response.data;
@@ -39,13 +43,18 @@ export function BestSellerProductsCarousel() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="md:max-w-[450px] w-[350px]"
+      className="md:max-w-full w-[350px] relative"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
         {productData.map((product: ProductType, index: number) => (
-          <CarouselItem key={index}>
+          <CarouselItem
+            key={index}
+            onClick={() =>
+              navigate(`/product/${generateSlug(product.name)}/${product._id}`)
+            }
+          >
             <div className="">
               <Card className="w-full md:max-w-[400px] h-[400px]">
                 <img
@@ -58,8 +67,8 @@ export function BestSellerProductsCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="md:ml-0 ml-7" />
-      <CarouselNext className="md:mr-0 mr-7" />
+      {/* <CarouselPrevious className="md:ml-0 ml-7" /> */}
+      {/* <CarouselNext className="md:mr-0 mr-7" /> */}
     </Carousel>
   );
 }

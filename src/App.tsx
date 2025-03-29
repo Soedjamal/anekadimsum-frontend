@@ -11,20 +11,41 @@ import Login from "./pages/Login";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
 import ScrollToTop from "./components/custom/utils/ScrollToTop";
 import SuccessPayment from "./pages/SuccessPayment";
+import NotFoundPage from "./pages/notFound/_404";
 
 function App() {
   const { pathname } = useLocation();
 
-  console.log(pathname);
-  const hideNavbar = ["/product/", "/dashboard", "/payment-success"];
+  const hideNavbar = [
+    "/product/",
+    "/dashboard",
+    "/payment-success",
+    "/auth/admin/login",
+  ];
 
   const isHide = hideNavbar.some((route) => pathname.startsWith(route));
+
+  const routes = [
+    "/",
+    "/products",
+    "/product/:slug/:id",
+    "/products/:slug",
+    "/auth/admin/login",
+    "/payment-success",
+    "/dashboard",
+    "/dashboard/products",
+  ];
+
+  const is404 = !routes.some((route) => {
+    const regex = new RegExp(`^${route.replace(/:[^\s/]+/g, "[^/]+")}$`);
+    return regex.test(pathname);
+  });
 
   return (
     <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
-        {!isHide && <Navbar />}
+        {!isHide && !is404 && <Navbar />}
 
         <main className="flex-1">
           <Routes>
@@ -32,17 +53,19 @@ function App() {
             <Route path="/products" element={<SearchProduct />} />
             <Route path="/product/:slug/:id" element={<DetailProduct />} />
             <Route path="/products/:slug" element={<DetailProductsByType />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/payment-success" element={<SuccessPayment />} />
+            <Route path="/auth/admin/login" element={<Login />} />
+            <Route path="/payment-success/:id" element={<SuccessPayment />} />
 
             <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/:id" element={<Dashboard />} />
               <Route path="/dashboard/products" element={<ProductsAdmin />} />
             </Route>
+
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </main>
 
-        {!isHide && <Footer />}
+        {!isHide && !is404 && <Footer />}
       </div>
     </>
   );

@@ -1,6 +1,8 @@
 import { axiosInstance } from "@/lib/axios";
 import ProductCard from "./ProductCard";
 import { useQuery } from "@tanstack/react-query";
+import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type ProductType = {
   _id?: number;
@@ -18,6 +20,7 @@ type ProductSectionProps = {
 };
 
 const ProductSection = ({ scrollDirection, filter }: ProductSectionProps) => {
+  const navigate = useNavigate();
   const getProducts = async () => {
     const response = await axiosInstance("/api/products");
     return response.data;
@@ -39,15 +42,17 @@ const ProductSection = ({ scrollDirection, filter }: ProductSectionProps) => {
         >
           {filter == "bySold"
             ? filteredBySold?.map((product, index) => (
-                <ProductCard
-                  id={product._id}
-                  name={product.name}
-                  price={product.price}
-                  stock={product.stock}
-                  sold={product.sold}
-                  imageUrl={product.thumbnail}
-                  key={index}
-                />
+                <>
+                  <ProductCard
+                    id={product._id}
+                    name={product.name}
+                    price={product.price}
+                    stock={product.stock}
+                    sold={product.sold}
+                    imageUrl={product.thumbnail}
+                    key={index}
+                  />
+                </>
               ))
             : filter == "byPrice"
               ? filteredByPrice?.map((product, index) => (

@@ -2,7 +2,7 @@ import { BestSellerProductsCarousel } from "@/components/custom/products/Product
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ShoppingCart } from "lucide-react";
+import { Phone, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -51,8 +51,8 @@ const Home = () => {
     <>
       <div className="main-content w-full">
         <section
-          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center 
-          items-center md:items-start md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center lg:justify-start 
+          items-center md:items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
         >
           <div className="hero-content flex md:flex-row-reverse flex-col items-center h-fit gap-8 md:mt-36">
             <div className="hero-img w-[350px] md:max-w-[400px] h-[350px] rounded-lg">
@@ -80,15 +80,20 @@ const Home = () => {
         </section>
 
         <section
-          id="products"
-          className="flex w-full bg-neutral-50 pb-36 md:px-36 md:justify-start justify-center
-          md:pt-0 pt-20 gap-8 min-h-screen"
+          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center lg:justify-start
+          items-center md:items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
         >
-          <div className="flex flex-col md:flex-row md:gap-20 md:max-w-[400px] w-[350px] text-[#AD8862]">
-            <div>
-              <h1 className="text-5xl font-bold mt-16 w-64 text-foreground">
-                Dimsum Best Seller
-              </h1>
+          <div className="hero-content flex md:flex-row-reverse flex-col-reverse items-center h-fit  gap-8 md:mt-36">
+            <div className="hero-img w-[350px] md:max-w-[400px] h-auto rounded-lg">
+              <BestSellerProductsCarousel />
+            </div>
+
+            <div className="">
+              <div className="hero-title">
+                <h1 className="text-5xl font-bold w-64 text-foreground">
+                  Dimsum Best Seller
+                </h1>
+              </div>
 
               <p className="hero-description md:max-w-[400px] w-[350px] md:text-lg mt-4">
                 Dimsum best seller adalah hidangan favorit dengan isian lezat
@@ -97,15 +102,43 @@ const Home = () => {
                 sangat menggugah selera.
               </p>
 
-              <Button className=" mt-10" onClick={() => navigate("/products")}>
+              <Button className=" mt-5" onClick={() => navigate("/products")}>
                 Cek Produk Selengkapnya
               </Button>
             </div>
-            <div className="carousel mt-10">
-              <BestSellerProductsCarousel />
-            </div>
           </div>
         </section>
+
+        {/* <section */}
+        {/*   id="products" */}
+        {/*   className="flex w-full bg-neutral-50 pb-36 md:px-36 md:justify-start justify-center border-2 */}
+        {/*   md:pt-0 pt-20 gap-8 min-h-screen relative" */}
+        {/* > */}
+        {/*   <div */}
+        {/*     className="flex flex-col md:flex-row md:gap-20 md:max-w-[400px] w-[350px] */}
+        {/*     border-2 border-red-300 text-[#AD8862]" */}
+        {/*   > */}
+        {/*     <div> */}
+        {/*       <h1 className="text-5xl font-bold mt-16 w-64 text-foreground"> */}
+        {/*         Dimsum Best Seller */}
+        {/*       </h1> */}
+        {/**/}
+        {/*       <p className="hero-description md:max-w-auto w-[350px] md:text-lg mt-4"> */}
+        {/* Dimsum best seller adalah hidangan favorit dengan isian lezat */}
+        {/* seperti ayam, udang, atau jamur, dibungkus kulit tipis dan */}
+        {/* dikukus hingga lembut. Rasanya gurih, teksturnya kenyal, dan */}
+        {/* sangat menggugah selera. */}
+        {/*       </p> */}
+        {/**/}
+        {/*       <Button className=" mt-10" onClick={() => navigate("/products")}> */}
+        {/*         Cek Produk Selengkapnya */}
+        {/*       </Button> */}
+        {/*     </div> */}
+        {/*     <div className="mt-10"> */}
+        {/*       <BestSellerProductsCarousel /> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </section> */}
 
         <section
           id="about"
@@ -227,57 +260,63 @@ const Home = () => {
                 </p>
               </div>
 
-              <form
-                className="flex flex-col mt-8 gap-4"
-                onSubmit={handleSubmit}
-              >
-                <label>
-                  Nama Pengirim:
-                  <Input
-                    name="name"
-                    value={formData.name}
-                    className="mt-3"
-                    type="text"
-                    placeholder="Masukkan nama mu"
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Email Pengirim
-                  <Input
-                    name="email"
-                    value={formData.email}
-                    className="mt-3"
-                    type="email"
-                    placeholder="Masukkan email mu"
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Pesan:
-                  <Textarea
-                    value={formData.message}
-                    placeholder="Tulis pesan mu"
-                    name="message"
-                    className="min-h-[100px] max-h-[250px] w-full mt-3"
-                    onChange={handleChange}
-                  ></Textarea>
-                </label>
-                <Button className="w-full mt-4" type="submit">
-                  Kirim
-                </Button>
-                {status && (
-                  <p
-                    className={`text-center mt-4 text-sm ${
-                      status.includes("successfully")
-                        ? "text-green-600"
-                        : "text-red-600"
-                    }`}
-                  >
-                    {status}
-                  </p>
-                )}
-              </form>
+              <div className="flex mt-8">
+                <form
+                  className="flex flex-col gap-4 w-full lg:w-1/2"
+                  onSubmit={handleSubmit}
+                >
+                  <label>
+                    Nama Pengirim:
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      className="mt-3"
+                      type="text"
+                      placeholder="Masukkan nama mu"
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label>
+                    Email Pengirim
+                    <Input
+                      name="email"
+                      value={formData.email}
+                      className="mt-3"
+                      type="email"
+                      placeholder="Masukkan email mu"
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label>
+                    Pesan:
+                    <Textarea
+                      value={formData.message}
+                      placeholder="Tulis pesan mu"
+                      name="message"
+                      className="min-h-[100px] max-h-[250px] w-full mt-3"
+                      onChange={handleChange}
+                    ></Textarea>
+                  </label>
+                  <Button className="w-full mt-4" type="submit">
+                    Kirim
+                  </Button>
+                  {status && (
+                    <p
+                      className={`text-center mt-4 text-sm ${
+                        status.includes("successfully")
+                          ? "text-green-600"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {status}
+                    </p>
+                  )}
+                </form>
+
+                <div className="hidden lg:flex">
+                  <Phone />
+                </div>
+              </div>
             </div>
           </div>
         </section>

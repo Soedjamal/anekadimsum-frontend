@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchInput from "../content/SearchInput";
 import { DropdownMenuDemo } from "../content/DropdownMenu";
 
@@ -10,21 +10,31 @@ type NavType = {
 
 const navData: NavType[] = [
   { pathHref: "/", title: "Home" },
-  { pathHref: "#about", title: "About" },
+  { pathHref: "/#about", title: "About" },
   { pathHref: "/products", title: "Products" },
-  { pathHref: "#contact", title: "Contact" },
+  { pathHref: "/#contact", title: "Contact" },
 ];
 
 const Navbar = () => {
-  const { pathname } = useLocation();
   const [scroll, setScroll] = useState(false);
 
+  const { pathname, hash } = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (hash) {
+      const sectionId = hash.replace("#", "");
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
     const handleScroll = () => setScroll(window.scrollY > 5);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hash]);
 
   return (
     <nav
@@ -44,22 +54,31 @@ py-4 w-full gap-8 fixed items-center transition-all duration-300 ${
         <ul className="md:flex gap-8 hidden">
           {navData.map((item, index) => (
             <li key={index}>
-              {item.pathHref.startsWith("#") ? (
-                <a href={item.pathHref} className="hover:text-[#543017]">
-                  {item.title}
-                </a>
-              ) : (
-                <Link
-                  to={item.pathHref}
-                  className={`${
-                    pathname === item.pathHref
-                      ? "text-[#543017] font-semibold"
-                      : ""
-                  } hover:text-[#543017]`}
-                >
-                  {item.title}
-                </Link>
-              )}
+              <Link
+                to={item.pathHref}
+                className={`${
+                  pathname === item.pathHref
+                    ? "text-[#543017] font-semibold"
+                    : ""
+                } hover:text-[#543017]`}
+                onClick={(e) => {
+                  if (item.pathHref.startsWith("/#")) {
+                    e.preventDefault();
+                    const sectionId = item.pathHref.replace("/#", "");
+
+                    if (pathname !== "/") {
+                      navigate(`/#${sectionId}`);
+                    } else {
+                      const section = document.getElementById(sectionId);
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                  }
+                }}
+              >
+                {item.title}
+              </Link>
             </li>
           ))}
         </ul>

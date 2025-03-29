@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "@/lib/axios";
+import { useNavigate } from "react-router-dom";
 
 interface LoginCredentials {
   email: string;
@@ -16,6 +17,7 @@ interface User {
 }
 
 export const useAuth = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export const useAuth = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
-      window.location.href = "/dashboard";
+      navigate(`/dashboard/${data._id}`);
     },
   });
 
@@ -43,7 +45,7 @@ export const useAuth = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    window.location.href = "/login";
+    window.location.href = "/auth/admin/login";
   };
 
   return { user, mutate, logout, isPending, isError, error };
