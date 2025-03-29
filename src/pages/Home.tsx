@@ -49,53 +49,60 @@ const Home = () => {
 
   return (
     <>
-      <div className="main-content w-full">
+      <div className="main-content w-full bg-neutral-50">
         <section
-          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center lg:justify-start 
-          items-center md:items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          className="hero container flex mx-auto justify-center 
+         items-center pt-20 md:pt-0 max-w-4xl gap-4 py-20 h-fit bg-neutral-50"
         >
-          <div className="hero-content flex md:flex-row-reverse flex-col items-center h-fit gap-8 md:mt-36">
-            <div className="hero-img w-[350px] md:max-w-[400px] h-[350px] rounded-lg">
-              <img src="/images/dimsum-hero.png" alt="" />
+          <div
+            className="hero-content flex flex-col md:flex-row-reverse md:w-full
+            md:justify-between items-center gap-8 md:mt-36 h-fit"
+          >
+            <div className="hero-img w-[350px] md:min-w-[350px] h-[350px] rounded-lg">
+              <img src="/images/dimsum-hero.png" alt="Dimsum" />
             </div>
-
-            <div className="">
+            <div className="md:w-full">
               <div className="hero-title">
                 <h1 className="text-5xl font-bold text-[#543017]">Aneka</h1>
                 <h1 className="text-5xl font-bold text-[#AD8862]">Dimsum</h1>
               </div>
 
-              <p className="hero-description md:max-w-[400px] w-[350px] md:text-lg mt-4">
+              <p className="hero-description w-[350px] md:min-w-full md:text-lg mt-4">
                 Dimsum fresh, lezat, dan halal dengan isian melimpah! Dibuat
                 dari bahan berkualitas dan bumbu autentik, siap menemani setiap
                 momen spesialmu. Pesan sekarang dan nikmati kelezatannya!
               </p>
 
-              <Button className=" mt-5" onClick={() => navigate("/products")}>
-                Order Sekarang
-                <ShoppingCart />
+              <Button
+                className="mt-5 flex items-center gap-2"
+                onClick={() => navigate("/products")}
+              >
+                Order Sekarang <ShoppingCart />
               </Button>
             </div>
           </div>
         </section>
 
         <section
-          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center lg:justify-start
-          items-center md:items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          className="hero container flex mx-auto justify-center
+           items-center pt-20 md:pt-0 max-w-4xl gap-4 py-20 h-fit bg-neutral-50"
         >
-          <div className="hero-content flex md:flex-row-reverse flex-col-reverse items-center h-fit  gap-8 md:mt-36">
+          <div
+            className="hero-content flex flex-col-reverse md:flex-row-reverse md:w-full
+            md:justify-between items-center gap-8 md:mt-36 h-fit"
+          >
             <div className="hero-img w-[350px] md:max-w-[400px] h-auto rounded-lg">
               <BestSellerProductsCarousel />
             </div>
 
-            <div className="">
+            <div className="md:w-full">
               <div className="hero-title">
                 <h1 className="text-5xl font-bold w-64 text-foreground">
                   Dimsum Best Seller
                 </h1>
               </div>
 
-              <p className="hero-description md:max-w-[400px] w-[350px] md:text-lg mt-4">
+              <p className="hero-description md:min-w-full w-[350px] md:text-lg mt-4 ">
                 Dimsum best seller adalah hidangan favorit dengan isian lezat
                 seperti ayam, udang, atau jamur, dibungkus kulit tipis dan
                 dikukus hingga lembut. Rasanya gurih, teksturnya kenyal, dan
@@ -109,141 +116,79 @@ const Home = () => {
           </div>
         </section>
 
-        {/* <section */}
-        {/*   id="products" */}
-        {/*   className="flex w-full bg-neutral-50 pb-36 md:px-36 md:justify-start justify-center border-2 */}
-        {/*   md:pt-0 pt-20 gap-8 min-h-screen relative" */}
-        {/* > */}
-        {/*   <div */}
-        {/*     className="flex flex-col md:flex-row md:gap-20 md:max-w-[400px] w-[350px] */}
-        {/*     border-2 border-red-300 text-[#AD8862]" */}
-        {/*   > */}
-        {/*     <div> */}
-        {/*       <h1 className="text-5xl font-bold mt-16 w-64 text-foreground"> */}
-        {/*         Dimsum Best Seller */}
-        {/*       </h1> */}
-        {/**/}
-        {/*       <p className="hero-description md:max-w-auto w-[350px] md:text-lg mt-4"> */}
-        {/* Dimsum best seller adalah hidangan favorit dengan isian lezat */}
-        {/* seperti ayam, udang, atau jamur, dibungkus kulit tipis dan */}
-        {/* dikukus hingga lembut. Rasanya gurih, teksturnya kenyal, dan */}
-        {/* sangat menggugah selera. */}
-        {/*       </p> */}
-        {/**/}
-        {/*       <Button className=" mt-10" onClick={() => navigate("/products")}> */}
-        {/*         Cek Produk Selengkapnya */}
-        {/*       </Button> */}
-        {/*     </div> */}
-        {/*     <div className="mt-10"> */}
-        {/*       <BestSellerProductsCarousel /> */}
-        {/*     </div> */}
-        {/*   </div> */}
-        {/* </section> */}
-
         <section
           id="about"
-          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50 justify-center items-center
-          md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          className="hero container mx-auto max-w-4xl flex justify-center
+          items-center bg-neutral-50 py-20 md:pt-0 h-fit"
         >
-          <div className="hero-content flex flex-col items-center h-fit gap-8 md:mt-36 w-full">
+          <div className="hero-content flex flex-col items-center w-full h-fit gap-8 md:mt-36">
             <div className="hero-title w-full text-center">
               <h1 className="text-5xl font-bold text-[#543017]">
                 Tentang Kami
               </h1>
             </div>
-            <div className="hero-img w-auto h-auto md:w-full relative">
+            <div className="hero-img relative w-full md:w-full h-auto">
               <img
                 className="w-full h-[200px] object-cover aspect-video"
                 src="/images/about-img.jpg"
-                alt=""
+                alt="Tentang Kami"
               />
               <div className="absolute w-full h-[200px] p-4 md:p-6 bg-black bg-opacity-70 top-0">
                 <h2 className="text-white text-xl font-bold">Aneka Dimsum</h2>
                 <h2 className="text-white text-lg font-bold leading-5 mt-3 md:w-3/4">
-                  Lebih dari sekedar makanan. ini tentang pengalaman rasa yang
+                  Lebih dari sekedar makanan, ini tentang pengalaman rasa yang
                   tak terlupakan
                 </h2>
               </div>
             </div>
 
-            <div className="md:text-center">
-              <p
-                className="hero-description md:w-full
-                w-[350px] md:text-lg mt-4 text-start"
-              >
+            <div className="md:text-center w-[350px] md:w-full">
+              <p className="hero-description text-start md:text-lg mt-4">
                 Selamat datang di Aneka Dimsum, tempat terbaik untuk menikmati
                 dimsum homemade berkualitas! Kami menyajikan dimsum segar dengan
                 bahan pilihan, kulit lembut, dan isian melimpah. Nikmati
                 berbagai pilihan rasa dengan saus khas yang menggugah selera.
                 Cocok untuk camilan atau makan bersama keluarga.
               </p>
+            </div>
 
-              <div
-                className="card-info mt-6 flex flex-col 
-                md:flex-row gap-8  md:w-full items-center md:justify-between"
-              >
+            <div className="card-info mt-6 flex flex-col md:flex-row gap-8 w-full items-center md:justify-between">
+              {[
+                {
+                  src: "/images/hand-money-income-dollar-icon.png",
+                  title: "Harga Bersahabat",
+                  desc: "Kelezatan premium dengan harga yang tetap terjangkau",
+                },
+                {
+                  src: "/images/fruit-basket-icon.png",
+                  title: "Fresh Setiap Hari",
+                  desc: "Dibuat dengan bahan pilihan",
+                },
+                {
+                  src: "/images/family-icon.png",
+                  title: "Pelayanan Ramah",
+                  desc: "Kepuasan & Kenyamanan pelanggan adalah prioritas kami",
+                },
+              ].map((item, index) => (
                 <div
-                  className="icon bg-primary
-                  flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
+                  key={index}
+                  className="icon bg-primary flex flex-col justify-center items-center w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
                 >
                   <div className="logo">
-                    <img
-                      className="w-24"
-                      src="/images/hand-money-income-dollar-icon.png"
-                      alt=""
-                    />
+                    <img className="w-24" src={item.src} alt={item.title} />
                   </div>
-                  <h1 className="text-xl font-bold">Harga Bersahabat</h1>
-                  <p className="text-center mt-2">
-                    Kelezatan premium dengan harga yang tetap terjangkau
-                  </p>
+                  <h1 className="text-xl font-bold mt-2">{item.title}</h1>
+                  <p className="text-center mt-2">{item.desc}</p>
                 </div>
-
-                <div
-                  className="icon bg-primary
-                  flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
-                >
-                  <div className="logo">
-                    <img
-                      className="w-24"
-                      src="/images/fruit-basket-icon.png"
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="text-xl font-bold">Fresh Setiap Hari</h1>
-                  <p className="text-center mt-2">
-                    Dibuat dengan bahan pilihan
-                  </p>
-                </div>
-
-                <div
-                  className="icon bg-primary
-                  flex flex-col justify-center items-center
-                  w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
-                >
-                  <div className="logo">
-                    <img
-                      className="w-24"
-                      src="/images/family-icon.png"
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="text-xl font-bold">Pelayanan Ramah</h1>
-                  <p className="text-center mt-2">
-                    Kepuasan & Kenyamanan pelanggan adalah prioritas kami
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section
           id="contact"
-          className="hero flex w-full md:px-36 md:justify-start bg-neutral-50
-           justify-center items-center md:pt-0 pt-20 gap-8 py-20 min-h-screen"
+          className="hero flex container max-w-4xl mx-auto md:justify-start bg-neutral-50
+           justify-center items-center md:pt-0 pt-20 gap-8 py-20 h-fit"
         >
           <div className="hero-content flex md:flex-row flex-col items-center h-fit gap-8 md:mt-36">
             <div className="">
@@ -262,7 +207,7 @@ const Home = () => {
 
               <div className="flex mt-8">
                 <form
-                  className="flex flex-col gap-4 w-full lg:w-1/2"
+                  className="flex flex-col gap-4 w-full lg:w-full"
                   onSubmit={handleSubmit}
                 >
                   <label>
@@ -313,7 +258,7 @@ const Home = () => {
                   )}
                 </form>
 
-                <div className="hidden lg:flex">
+                <div className="hidden ">
                   <Phone />
                 </div>
               </div>

@@ -6,10 +6,10 @@ const Products = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="main-content">
+      <div className="main-content w-full">
         <section
           id="products"
-          className="flex flex-col w-full md:justify-start md:px-36 justify-center
+          className="flex flex-col w-full md:justify-start max-w-4xl mx-auto justify-center
           items-center md:pt-20 py-20 min-h-screen bg-neutral-50"
         >
           <div className="md:w-full w-[350px] mt-10">

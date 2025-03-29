@@ -1,0 +1,16 @@
+{
+  "name": "Aneka Dimsum",
+  "short_name": "Aneka Dimsum",
+  "description": "Nikmati dimsum lezat dengan berbagai pilihan rasa.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/anekadimsum-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

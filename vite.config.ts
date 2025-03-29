@@ -1,10 +1,53 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { VitePWA } from "vite-plugin-pwa";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+
+    VitePWA({
+      registerType: "autoUpdate",
+      manifest: {
+        name: "Aneka Dimsum",
+        short_name: "Dimsum",
+        description: "Nikmati dimsum lezat dengan berbagai pilihan rasa.",
+        theme_color: "#ffffff",
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/",
+        icons: [
+          {
+            src: "/images/anekadimsum-192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/images/anekadimsum-512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
+      workbox: {
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/anekadimsum\.vercel\.app\/.*$/,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "dynamic-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+            },
+          },
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

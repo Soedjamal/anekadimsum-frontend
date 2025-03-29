@@ -1,4 +1,5 @@
 import CheckoutProduct from "@/components/custom/products/CheckoutProduct";
+import MessageCS from "@/components/custom/utils/MessageCS";
 import { Button } from "@/components/ui/button";
 import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const DetailProduct = () => {
   const [checkoutMenu, setCheckoutMenu] = useState(false);
+  const [messageCS, setMessageCS] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -27,17 +29,25 @@ const DetailProduct = () => {
     queryKey: ["product"],
   });
 
-  console.log(productData);
-
   return (
     <>
+      {messageCS ? (
+        <div className="fixed bottom-14 left-10 z-10 transition-all duration-300">
+          <MessageCS productName={productData?.name} />
+        </div>
+      ) : (
+        <div className="fixed bottom-[-100%] transition-all duration-300 left-10 z-10">
+          <MessageCS productName={productData?.name} />
+        </div>
+      )}
+
       {isLoading ? (
         <div className="flex min-h-screen justify-center items-center">
           <LoaderCircle className="animate-spin text-primary" size="3rem" />
         </div>
       ) : (
-        <>
-          <div className="bg-neutral-50 px-7 py-7 md:px-36 ">
+        <div className="w-full bg-neutral-50">
+          <div className="bg-neutral-50 px-7 py-7 w-full max-w-4xl mx-auto">
             <ArrowLeft
               size={"2rem"}
               className="bg-neutral-50"
@@ -45,12 +55,18 @@ const DetailProduct = () => {
             />
           </div>
 
-          <div className="flex relative w-full bg-neutral-50 pb-10 min-h-screen overflow-hidden">
+          <div
+            className="flex relative w-full  bg-neutral-50 pb-10 
+              min-h-screen overflow-hidden"
+          >
             <div
-              className="flex flex-col md:flex-row w-full px-7 
-        gap-8 md:px-36 "
+              className="flex flex-col md:flex-row px-7 
+                gap-8 bg-neutral-50 w-full max-w-4xl mx-auto"
             >
-              <div className="w-full h-[300px] md:w-[420px] md:h-[420px]  bg-neutral-200 overflow-hidden rounded-lg border-[1px]">
+              <div
+                className="w-full h-[300px] md:w-[420px] md:h-[420px]  bg-neutral-200 
+                  overflow-hidden rounded-lg border-[1px]"
+              >
                 <img
                   className="object-cover w-full h-full"
                   src={productData?.thumbnail}
@@ -108,7 +124,10 @@ const DetailProduct = () => {
           fixed bg-neutral-200 border-t-[1px] border-neutral-400 bottom-0 md:hidden"
             >
               <div className="py-5 flex min-w-full gap-4">
-                <div className="bg-primary flex justify-center items-center px-2 rounded-lg">
+                <div
+                  onClick={() => setMessageCS(!messageCS)}
+                  className="bg-primary flex justify-center items-center px-2 rounded-lg"
+                >
                   <MessageSquare />
                 </div>
                 <Button
@@ -121,18 +140,31 @@ const DetailProduct = () => {
                 </Button>
               </div>
             </div>
-            {checkoutMenu ? (
-              <>
-                <div
-                  onClick={() => setCheckoutMenu(false)}
-                  className="w-full h-screen bg-neutral-700 opacity-55 fixed top-0"
-                ></div>
+            <div className="w-full absolute flex justify-center">
+              {checkoutMenu ? (
+                <>
+                  <div
+                    onClick={() => setCheckoutMenu(false)}
+                    className="w-full h-screen bg-neutral-700 opacity-55 fixed top-0"
+                  ></div>
 
-                <div
-                  className="fixed bottom-[-20%] md:bottom-[0] md:flex md:justify-center
-             rounded-t-lg w-full h-screen md:h-full md:bg-transparent transition-all
+                  <div
+                    className="fixed bottom-[-20%] md:top-[0] md:flex md:justify-center
+             rounded-t-lg w-full max-w-4xl mx-auto h-screen md:h-fit md:py-8 md:bg-transparent transition-all
               duration-300 ease-out"
-                >
+                  >
+                    <CheckoutProduct
+                      name={productData?.name}
+                      thumbnail={productData?.thumbnail}
+                      stock={productData.stock}
+                      product_id={productData?._id}
+                      price={Number(productData?.price)}
+                      menu={() => setCheckoutMenu((prev) => !prev)}
+                    />
+                  </div>
+                </>
+              ) : (
+                <div className="fixed bottom-[-100%] w-full transition-all duration-300 ease-linear">
                   <CheckoutProduct
                     name={productData?.name}
                     thumbnail={productData?.thumbnail}
@@ -142,21 +174,10 @@ const DetailProduct = () => {
                     menu={() => setCheckoutMenu((prev) => !prev)}
                   />
                 </div>
-              </>
-            ) : (
-              <div className="fixed bottom-[-100%] w-full transition-all duration-300 ease-linear">
-                <CheckoutProduct
-                  name={productData?.name}
-                  thumbnail={productData?.thumbnail}
-                  stock={productData.stock}
-                  product_id={productData?._id}
-                  price={Number(productData?.price)}
-                  menu={() => setCheckoutMenu((prev) => !prev)}
-                />
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

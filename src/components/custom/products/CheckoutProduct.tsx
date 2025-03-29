@@ -115,11 +115,10 @@ const CheckoutProduct = ({
   return (
     <>
       <div
-        className="min-h-full w-screen flex flex-col px-7 md:px-36 lg:relative lg:px-10 lg:w-1/2
-        rounded-t-lg
-         bg-neutral-50"
+        className="min-h-full flex flex-col max-w-4xl px-7 md:px-10 md:relative lg:px-10 md:w-[80%] md:p-10
+        rounded-lg bg-neutral-50"
       >
-        <div className="absolute top-7 left-7 md:left-36 lg:left-10 w-full flex items-center gap-2">
+        <div className="absolute top-7 left-7 md:left-10 lg:left-10 w-full flex items-center gap-2">
           <ChevronLeft onClick={menu} className="" size={"2rem"} />
 
           <h4 className="text-lg font-bold">Checkout</h4>
