@@ -48,7 +48,7 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-0 md:gap-8">
           <div className="nav-logo w-9 h-9  rounded-md">
-            <img src="/images/anekadimsum-ico.png" alt="" />
+            <img className="w-9 h-9" src="/images/anekadimsum-ico.png" alt="" />
           </div>
 
           <ul className="md:flex gap-8 hidden">

@@ -59,7 +59,11 @@ const Home = () => {
             md:justify-between items-center gap-8 md:mt-36 h-fit"
           >
             <div className="hero-img w-[350px] md:min-w-[350px] h-[350px] rounded-lg">
-              <img src="/images/dimsum-hero.png" alt="Dimsum" />
+              <img
+                className="w-[350px] h-[350px]"
+                src="/images/dimsum-hero.png"
+                alt="Dimsum"
+              />
             </div>
             <div className="md:w-full">
               <div className="hero-title">
@@ -175,7 +179,11 @@ const Home = () => {
                   className="icon bg-primary flex flex-col justify-center items-center w-[350px] h-[350px] md:max-w-[300px] md:max-h-[300px] border-2 rounded-lg p-4"
                 >
                   <div className="logo">
-                    <img className="w-24" src={item.src} alt={item.title} />
+                    <img
+                      className="w-24 h-24"
+                      src={item.src}
+                      alt={item.title}
+                    />
                   </div>
                   <h1 className="text-xl font-bold mt-2">{item.title}</h1>
                   <p className="text-center mt-2">{item.desc}</p>

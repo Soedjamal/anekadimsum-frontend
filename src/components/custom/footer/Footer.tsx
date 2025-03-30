@@ -10,12 +10,16 @@ const Footer = () => {
       >
         <div className="w-fit md:w-1/3 ">
           <div className="flex items-center h-12 overflow-hidden w-fit ">
-            <img className="w-24" src="/images/anekadimsum-logo.png" alt="" />
+            <img
+              className="w-24 h-24"
+              src="/images/anekadimsum-logo.png"
+              alt=""
+            />
           </div>
-          <h4 className="w-1/2 md:w-full mt-2 text-foreground">
+          <p className="w-1/2 md:w-full mt-2 text-foreground">
             Menyediakan dimsum homemade berkualitas, partner terpercaya untuk
             kebutuhan dimsum anda
-          </h4>
+          </p>
         </div>
         <div className="mt-10 md:mt-0">
           <h4 className="font-bold">Quick Links</h4>

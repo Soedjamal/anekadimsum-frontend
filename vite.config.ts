@@ -11,7 +11,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "Aneka Dimsum",
-        short_name: "Aneka Dimsum",
+        short_name: "Dimsum",
         description: "Nikmati dimsum lezat dengan berbagai pilihan rasa.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
