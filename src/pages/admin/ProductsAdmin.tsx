@@ -1,4 +1,5 @@
 import ProductTable from "@/components/custom/admin/ProductsTable";
+import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -12,6 +13,11 @@ const deleteProductById = async (id: string) => {
   return response.data;
 };
 
+const resetProductValue = async () => {
+  const response = await axiosInstance.delete("/api/products/del");
+  return response.data;
+};
+
 const ProductsAdmin = () => {
   const queryQlient = useQueryClient();
 
@@ -20,7 +26,7 @@ const ProductsAdmin = () => {
     queryFn: getAllProducts,
   });
 
-  const { mutate } = useMutation({
+  const deleteMutation = useMutation({
     mutationFn: deleteProductById,
     onSuccess: () =>
       queryQlient.invalidateQueries({
@@ -28,14 +34,30 @@ const ProductsAdmin = () => {
       }),
   });
 
+  const resetMutation = useMutation({
+    mutationFn: resetProductValue,
+    onSuccess: () =>
+      queryQlient.invalidateQueries({
+        queryKey: ["products"],
+      }),
+  });
+
   const handleDelete = (id: string) => {
-    mutate(id);
+    deleteMutation.mutate(id);
+  };
+
+  const handleReset = () => {
+    resetMutation.mutate();
   };
 
   return (
     <>
       <div className="flex py-10 min-h-screen">
-        <ProductTable products={products} onDelete={handleDelete} />
+        <ProductTable
+          products={products}
+          onDelete={handleDelete}
+          onReset={handleReset}
+        />
       </div>
     </>
   );

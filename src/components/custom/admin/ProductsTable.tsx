@@ -9,6 +9,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 type Product = {
   _id: string;
@@ -22,9 +33,10 @@ type Product = {
 interface ProductTableProps {
   products: Product[];
   onDelete: (id: string) => void;
+  onReset: () => void;
 }
 
-const ProductTable = ({ products, onDelete }: ProductTableProps) => {
+const ProductTable = ({ products, onDelete, onReset }: ProductTableProps) => {
   const navigate = useNavigate();
 
   return (
@@ -34,6 +46,29 @@ const ProductTable = ({ products, onDelete }: ProductTableProps) => {
         <Button onClick={() => navigate("/admin/product/create")}>
           Tambah Produk +
         </Button>
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="destructive">Reset</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                Hapus nilai stok dan jumlah terjual?
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Apakah anda benar benar ingin mereset nilai stok dan jumlah
+                terjual?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Batal</AlertDialogCancel>
+              <AlertDialogAction onClick={() => onReset()}>
+                Lanjutkan
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
       <Table>
         <TableHeader>
