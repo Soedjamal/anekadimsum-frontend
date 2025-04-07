@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import { Label } from "@radix-ui/react-dropdown-menu";
+import { AxiosError } from "axios";
 import { CheckCircle, ChevronLeft, Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -100,11 +102,13 @@ const CheckoutProduct = ({
           },
         });
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Terjadi kesalahan:", error);
+
+      const axiosError = error as AxiosError<{ message: string }>;
       toast({
         title: "Error",
-        description: "Terjadi kesalahan saat memproses pembayaran.",
+        description: axiosError.response?.data.message,
         variant: "destructive",
       });
     } finally {
@@ -141,10 +145,7 @@ const CheckoutProduct = ({
             </div>
           </div>
 
-          {/* <h4>{price}</h4> */}
-
           <div className="flex gap-2">
-            {/* <h4 className="mt-7">Jumlah Produk :</h4> */}
             <div className="w-1/2 md:max-w-[300px] flex gap-2 py-5">
               <Button
                 color="#"
@@ -195,6 +196,7 @@ const CheckoutProduct = ({
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

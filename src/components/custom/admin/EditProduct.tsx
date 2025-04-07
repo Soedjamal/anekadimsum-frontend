@@ -18,11 +18,11 @@ import { AxiosError } from "axios";
 
 interface Product {
   _id: string;
-  name: string;
-  price: number;
+  name?: string;
+  price?: number;
   thumbnail: string;
-  stock: number;
-  sold: number;
+  stock?: number;
+  sold?: number;
 }
 
 const EditProductForm = () => {
@@ -105,19 +105,10 @@ const EditProductForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      !product.name ||
-      product.price === undefined ||
-      product.stock === undefined
-    ) {
-      setError("Please fill all required fields");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("name", product.name || "");
-    formData.append("price", product.price.toString());
-    formData.append("stock", product.stock.toString());
+    formData.append("price", product.price?.toString() || "0");
+    formData.append("stock", product.stock?.toString() || "0");
     formData.append("sold", product.sold?.toString() || "0");
 
     if (thumbnailFile) {
@@ -265,7 +256,7 @@ const EditProductForm = () => {
             <Button
               type="button"
               variant="outline"
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/admin/products")}
             >
               Batal
             </Button>

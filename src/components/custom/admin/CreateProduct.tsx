@@ -64,7 +64,7 @@ const CreateProductForm = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    if (name === "price" || name === "stock" || name === "sold") {
+    if (name === "price" || name === "stock") {
       setProduct({ ...product, [name]: parseFloat(value) || 0 });
     } else {
       setProduct({ ...product, [name]: value });
@@ -96,6 +96,7 @@ const CreateProductForm = () => {
     formData.append("name", product.name || "");
     formData.append("price", product.price.toString());
     formData.append("stock", product.stock.toString());
+    formData.append("sold", product.sold?.toString() || "0");
 
     if (thumbnailFile) {
       formData.append("thumbnail", thumbnailFile);

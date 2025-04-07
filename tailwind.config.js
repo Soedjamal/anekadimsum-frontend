@@ -40,7 +40,7 @@ export default {
           foreground: "#5e3a20",
         },
         destructive: {
-          DEFAULT: "#a04e2d",
+          DEFAULT: "rgb(240, 70, 70)",
           foreground: "#fff2e5",
         },
         border: "#9e7b5b",
