@@ -44,14 +44,8 @@ const navData = [
 export function DropdownMenuDemo() {
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
-  const [btnLogout, setBtnLogout] = useState(false);
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem("token");
-    if (isAdmin) {
-      setBtnLogout(true);
-    }
-
     if (hash) {
       const sectionId = hash.replace("#", "");
       const section = document.getElementById(sectionId);
@@ -100,16 +94,6 @@ export function DropdownMenuDemo() {
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>{" "}
-        {btnLogout ? (
-          <>
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem>
-              <LogOut />
-              <span>Log out</span>
-            </DropdownMenuItem>
-          </>
-        ) : null}
       </DropdownMenuContent>
     </DropdownMenu>
   );

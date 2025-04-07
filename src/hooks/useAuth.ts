@@ -37,7 +37,7 @@ export const useAuth = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
-      navigate(`/dashboard/${data._id}`);
+      navigate(`/admin/dashboard`);
     },
   });
 

@@ -5,13 +5,16 @@ import Footer from "./components/custom/footer/Footer";
 import DetailProduct from "./pages/DetailProduct";
 import SearchProduct from "./pages/SearchProduct";
 import DetailProductsByType from "./pages/DetailProductsType";
-import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/custom/auth/ProtectedRoute";
 import Login from "./pages/Login";
 import ProductsAdmin from "./pages/admin/ProductsAdmin";
 import ScrollToTop from "./components/custom/utils/ScrollToTop";
 import SuccessPayment from "./pages/SuccessPayment";
 import NotFoundPage from "./pages/notFound/_404";
+import Sidebar from "./components/custom/header/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import EditProductForm from "./components/custom/admin/EditProduct";
+import CreateProductForm from "./components/custom/admin/CreateProduct";
 
 function App() {
   const { pathname } = useLocation();
@@ -56,9 +59,27 @@ function App() {
             <Route path="/auth/admin/login" element={<Login />} />
             <Route path="/payment-success/:id" element={<SuccessPayment />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard/:id" element={<Dashboard />} />
-              <Route path="/dashboard/products" element={<ProductsAdmin />} />
+            <Route
+              element={
+                <div className="md:flex">
+                  <Sidebar />
+                  <div className=" ml-0 p-6 transition-all duration-30">
+                    <ProtectedRoute />
+                  </div>
+                </div>
+              }
+            >
+              <Route path="/admin/dashboard" element={<Dashboard />} />
+
+              <Route path="/admin/products" element={<ProductsAdmin />} />
+              <Route
+                path="/admin/product/:id/edit"
+                element={<EditProductForm />}
+              />
+              <Route
+                path="/admin/product/create"
+                element={<CreateProductForm />}
+              />
             </Route>
 
             <Route path="/*" element={<NotFoundPage />} />
