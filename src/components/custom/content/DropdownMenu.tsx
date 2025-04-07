@@ -1,22 +1,14 @@
-import {
-  AlignJustify,
-  Home,
-  LogOut,
-  Phone,
-  ShoppingCart,
-  User,
-} from "lucide-react";
+import { AlignJustify, Home, Phone, ShoppingCart, User } from "lucide-react";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const navData = [
   {
