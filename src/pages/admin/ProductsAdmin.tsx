@@ -1,5 +1,4 @@
 import ProductTable from "@/components/custom/admin/ProductsTable";
-import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
