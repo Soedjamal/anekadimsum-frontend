@@ -77,7 +77,7 @@ const Login = () => {
             </div>
           </div>
 
-          <p className="text-primary text-sm">Lupa password?</p>
+          {/* <p className="text-primary text-sm">Lupa password?</p> */}
           <Button
             type="submit"
             disabled={isPending}
