@@ -45,6 +45,10 @@ const CheckoutProduct = ({
     }
   }, []);
 
+  const updateProductByTRX = async () => {
+    await axiosInstance.patch(`/api/products/trx/${product_id}`);
+  };
+
   const handlePayment = async () => {
     setLoading(true);
     try {
@@ -76,6 +80,8 @@ const CheckoutProduct = ({
               title: "Pembayaran Berhasil",
               description: "Pesanan Anda telah berhasil dibayar.",
             });
+
+            updateProductByTRX();
           },
           onPending: function (result) {
             console.log("Pembayaran pending:", result);
