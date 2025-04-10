@@ -46,7 +46,7 @@ const CheckoutProduct = ({
   }, []);
 
   const updateProductByTRX = async () => {
-    await axiosInstance.patch(`/api/products/trx/${product_id}`);
+    await axiosInstance.patch(`/api/products/trx?qty=${qty}/${product_id}`);
   };
 
   const handlePayment = async () => {
