@@ -43,32 +43,35 @@ const ProductTable = ({ products, onDelete, onReset }: ProductTableProps) => {
     <div className="overflow-x-auto md:overflow-x-clip w-full bg-background p-4">
       <div className="flex items-center justify-between w-full">
         <h2 className="text-xl font-semibold mb-4">Daftar Produk Dimsum</h2>
-        <Button onClick={() => navigate("/admin/product/create")}>
-          Tambah Produk +
-        </Button>
 
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive">Reset</Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                Hapus nilai stok dan jumlah terjual?
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                Apakah anda benar benar ingin mereset nilai stok dan jumlah
-                terjual?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Batal</AlertDialogCancel>
-              <AlertDialogAction onClick={() => onReset()}>
-                Lanjutkan
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="flex gap-2">
+          <Button onClick={() => navigate("/admin/product/create")}>
+            Tambah Produk +
+          </Button>
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive">Reset</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Hapus nilai stok dan jumlah terjual?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Apakah anda benar benar ingin mereset nilai stok dan jumlah
+                  terjual?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Batal</AlertDialogCancel>
+                <AlertDialogAction onClick={() => onReset()}>
+                  Lanjutkan
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </div>
       <Table>
         <TableHeader>

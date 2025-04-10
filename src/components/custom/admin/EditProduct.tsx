@@ -57,7 +57,7 @@ const EditProductForm = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        },
+        }
       );
       return response.data;
     },
@@ -233,7 +233,7 @@ const EditProductForm = () => {
                   <img
                     src={thumbnailPreview}
                     alt="Product thumbnail"
-                    className="min-w-40 min-h-40 w-full h-full object-cover rounded-md border border-gray-200"
+                    className="w-40 h-40 object-cover rounded-md border border-gray-200"
                   />
                 </div>
               )}

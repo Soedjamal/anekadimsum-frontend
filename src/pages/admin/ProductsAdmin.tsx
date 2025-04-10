@@ -51,7 +51,7 @@ const ProductsAdmin = () => {
 
   return (
     <>
-      <div className="flex py-10 min-h-screen">
+      <div className="flex py-16 min-h-screen">
         <ProductTable
           products={products}
           onDelete={handleDelete}

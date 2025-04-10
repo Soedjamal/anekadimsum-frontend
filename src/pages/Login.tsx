@@ -14,11 +14,12 @@ const Login = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (formData.email.length < 1 || formData.password.length < 1) {
       return setErrorClient("field wajib di isi");
     }
 
-    e.preventDefault();
     mutate(formData);
   };
 
@@ -43,7 +44,6 @@ const Login = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              required
               className="w-full p-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -59,7 +59,6 @@ const Login = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                required
                 className="w-full pl-2 pr-10 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
               {showPass ? (
@@ -86,14 +85,17 @@ const Login = () => {
           >
             {isPending ? "Logging in..." : "Login"}
           </Button>
-          {isError && (
+          {isError ? (
             <p className="text-red-500 text-sm flex items-center gap-2 mb-4 p-2 w-full bg-red-50 rounded-sm">
               <CircleAlert size="1rem" />
-              {errorClient
-                ? errorClient
-                : (error as any)?.response?.data?.message || "Login failed"}
+              {(error as any)?.response?.data?.message || "Login failed"}
             </p>
-          )}
+          ) : errorClient ? (
+            <p className="text-red-500 text-sm flex items-center gap-2 mb-4 p-2 w-full bg-red-50 rounded-sm">
+              <CircleAlert size="1rem" />
+              {errorClient}
+            </p>
+          ) : null}
         </form>
       </div>
     </div>
