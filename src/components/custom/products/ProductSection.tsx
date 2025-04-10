@@ -26,7 +26,11 @@ const ProductSection = ({ scrollDirection, filter }: ProductSectionProps) => {
     <>
       <div className="flex w-full h-auto">
         <div
-          className={`${scrollDirection == "x" ? "overflow-x-auto h-[350px]" : "flex-wrap gap-4"} product-scrollX  flex w-full gap-x-4`}
+          className={`${
+            scrollDirection == "x"
+              ? "overflow-x-auto h-[350px]"
+              : "flex-wrap gap-4"
+          } product-scrollX  flex w-full gap-x-4`}
         >
           {filter == "bySold"
             ? filteredBySold?.map((product, index) => (
@@ -43,28 +47,28 @@ const ProductSection = ({ scrollDirection, filter }: ProductSectionProps) => {
                 </>
               ))
             : filter == "byPrice"
-              ? filteredByPrice?.map((product, index) => (
-                  <ProductCard
-                    id={product._id}
-                    name={product.name}
-                    price={product.price}
-                    stock={product.stock}
-                    sold={product.sold}
-                    imageUrl={product.thumbnail}
-                    key={index}
-                  />
-                ))
-              : productData?.map((product, index) => (
-                  <ProductCard
-                    id={product._id}
-                    name={product.name}
-                    price={product.price}
-                    stock={product.stock}
-                    sold={product.sold}
-                    imageUrl={product.thumbnail}
-                    key={index}
-                  />
-                ))}
+            ? filteredByPrice?.map((product, index) => (
+                <ProductCard
+                  id={product._id}
+                  name={product.name}
+                  price={product.price}
+                  stock={product.stock}
+                  sold={product.sold}
+                  imageUrl={product.thumbnail}
+                  key={index}
+                />
+              ))
+            : productData?.map((product, index) => (
+                <ProductCard
+                  id={product._id}
+                  name={product.name}
+                  price={product.price}
+                  stock={product.stock}
+                  sold={product.sold}
+                  imageUrl={product.thumbnail}
+                  key={index}
+                />
+              ))}
         </div>
       </div>
     </>
