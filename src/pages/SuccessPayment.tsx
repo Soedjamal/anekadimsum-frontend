@@ -14,9 +14,7 @@ const SuccessPayment = () => {
   }, [id]);
 
   useEffect(() => {
-    if (id?.slice(0, 5) === "ORDER") {
-      updateProductByTRX();
-    }
+    updateProductByTRX();
   }, [id, updateProductByTRX]);
 
   return (

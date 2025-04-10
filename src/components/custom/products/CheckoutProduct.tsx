@@ -39,9 +39,10 @@ const CheckoutProduct = ({
   };
 
   useEffect(() => {
-    const customerName = localStorage.getItem("payment");
-    if (customerName) {
-      setFirstName(customerName);
+    const customer = localStorage.getItem("payment");
+    const customerData = customer ? JSON.parse(customer) : null;
+    if (customerData) {
+      setFirstName(customerData.firstName);
     }
   }, []);
 
@@ -61,7 +62,13 @@ const CheckoutProduct = ({
         return;
       }
 
-      localStorage.setItem("payment", firstName);
+      localStorage.setItem(
+        "payment",
+        JSON.stringify({
+          firstName: firstName,
+          productId: product_id,
+        })
+      );
 
       const response = await axiosInstance.post("api/transactions", {
         first_name: firstName,
@@ -112,13 +119,6 @@ const CheckoutProduct = ({
       }
     } catch (error: unknown) {
       console.error("Terjadi kesalahan:", error);
-
-      const axiosError = error as AxiosError<{ message: string }>;
-      toast({
-        title: "Error",
-        description: axiosError.response?.data.message,
-        variant: "destructive",
-      });
     } finally {
       setLoading(false);
     }
