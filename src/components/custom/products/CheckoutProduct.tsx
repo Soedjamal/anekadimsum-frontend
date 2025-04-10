@@ -81,7 +81,9 @@ const CheckoutProduct = ({
               description: "Pesanan Anda telah berhasil dibayar.",
             });
 
-            updateProductByTRX();
+            if (result) {
+              updateProductByTRX();
+            }
           },
           onPending: function (result) {
             console.log("Pembayaran pending:", result);
