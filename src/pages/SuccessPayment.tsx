@@ -9,9 +9,12 @@ const SuccessPayment = () => {
 
   const { id } = useParams();
 
+  const data = localStorage.getItem("payment");
+  const payment = data ? JSON.parse(data) : null;
+
   const updateProductByTRX = useCallback(async () => {
-    await axiosInstance.patch(`/api/products/trx/${id}`);
-  }, [id]);
+    await axiosInstance.patch(`/api/products/trx/${id}/?qty=${payment.qty}`);
+  }, [id, payment.qty]);
 
   useEffect(() => {
     updateProductByTRX();

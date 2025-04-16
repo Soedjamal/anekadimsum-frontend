@@ -66,7 +66,8 @@ const CheckoutProduct = ({
         JSON.stringify({
           firstName: firstName,
           productId: product_id,
-        })
+          qty: qty,
+        }),
       );
 
       const response = await axiosInstance.post("api/transactions", {
